@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Advertencia</title>
+  <style>
+    body{
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background-color: rgb(206, 56, 56);
+      color: white;
+      text-align: center;
+      vertical-align: middle;
+      margin-top: 5vw;
+    }
+    .adv{
+      margin: 0;
+      font-size: 80px;
+    }
+    .adv2{
+      margin: 0;
+      font-size: 40px;
+    }
+    p{
+      font-size: 25px;
+    }
+    input[type="date"] {
+    /* Estilos de tu elección */
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 25px;
+    padding: 8px;
+    }
+
+    /* Estilos para el texto de etiqueta asociado al campo */
+    label {
+      /* Estilos de tu elección */
+      font-weight: bold;
+    }
+
+    /* Estilos para el campo cuando está enfocado */
+    input[type="date"]:focus {
+      /* Estilos de tu elección */
+      outline: none;
+      border-color: blue;
+    }
+    button[type="submit"] {
+    /* Estilos de tu elección */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 25px;
+  }
+
+  /* Estilos para el botón cuando se le pasa el cursor */
+  button[type="submit"]:hover {
+    /* Estilos de tu elección */
+    background-color: #45a049;
+  }
+  h3{
+    font-size: 25px;
+  }
+
+  </style>
+</head>
+<body>
+  <h1 class="adv">¡ADVERTENCIA!</h1>
+  <h1 class="adv2">Contenido para adultos</h1>
+  <p>Este juego contiene temas y contenidos para adultos que pueden no ser aptos para todas las edades.<br></p>
+  <p>El juego contiene:</p>
+  <h3>Asesinatos, abusos, canibalismo</h3>
+  <h3>Trajes atrevidos, comentarios sexuales y situaciones lascivas</h3>
+  <h3>Desnudez y sexo completo femenino, transexual y masculino</h3>
+  <h3>Lenguaje fuerte y alcohol</h3>
+  <h3>Consentimiento dudoso</h3>
+  <p>Ingresa tu fecha de nacimiento para continuar:</p>
+  
+  
+  <form onsubmit="verifyAge(event)">
+    <input type="date" id="birthdate" required>
+    <button type="submit">Continuar</button>
+  </form>
+
+  <script>
+    function verifyAge(event) {
+      event.preventDefault();
+
+      var birthdateInput = document.getElementById('birthdate');
+      var birthdate = new Date(birthdateInput.value);
+      var currentDate = new Date();
+      var age = currentDate.getFullYear() - birthdate.getFullYear();
+
+      if (age >= 18) {
+        var expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 30);
+        document.cookie = "ageConfirmed=true; expires=" + expirationDate.toUTCString() + "; path=/";
+
+        window.location.href = "index.html";
+      } else {
+        window.location.href = "rechazo.html";
+      }
+    }
+  </script>
+</body>
+</html>
